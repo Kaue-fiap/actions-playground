@@ -1,13 +1,44 @@
 name: "Hello world workflow"
 
- on:
-   workflow_dispatch:
+on:
+  push:
    
- jobs:
-  print _hello_world:
-   name: Hello world!
-   runs-on: ubuntu-latest
-   steps: 
-    - name: Hello world!
-     run: echo 'Hello world'
-     
+   jobs:  
+    print_date_ubuntu:
+      name: Hello world Ubuntu!
+      runs-on: ubuntu-latest
+      
+      steps: 
+         - name: Print Date ubuntu!
+           run: date
+           
+    print_date_windows:
+       name: Hello world windows!
+       run-on: Windows-latest
+       
+      steps: 
+         - name: Hello world windows!
+           run: date
+           
+    print_date_macos:
+      name: Hello world macos!
+       run-on: macos-latest
+       
+      steps: 
+         - name: Print Date Macos!
+           run: date
+           
+    print_date_last:
+      name: Print Date Last!
+      runs-on: ubuntu-latest
+      
+    needs:
+      - print_date_ubuntu
+      - print_date_windows
+      - print_date_macos
+      
+        steps:
+          - name: Print Date Final!
+            run: date
+    
+       
