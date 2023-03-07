@@ -6,11 +6,16 @@ name: Node.js CI
 on:
   push:
   
+env: 
+  VAR_WORKFLOW: 'variavel_nivel_workflow'
+  
+  
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    env:
+      VAR_JOB: 'variavel nivel job'
+            
     steps:
     - uses: actions/checkout@v3    
     - name: Use Node.js 14
@@ -18,5 +23,7 @@ jobs:
       with:
         node-version: 14.x
         cache: 'npm'     
-    - run: npm install
-    - run: npm run dev
+    
+    - run: echo 'Variável de workflow ${{ env.VAR_WORKFLOW }}'
+    - run: echo 'Variável do job ${{ env.VAR_JOB }}'
+    
